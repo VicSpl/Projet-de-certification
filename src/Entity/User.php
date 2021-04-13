@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -70,6 +72,16 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $active;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Cat::class, mappedBy="owner", orphanRemoval=true)
+     */
+    private $cats;
+
+    public function __construct()
+    {
+        $this->cats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -232,6 +244,36 @@ class User implements UserInterface
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cat[]
+     */
+    public function getCats(): Collection
+    {
+        return $this->cats;
+    }
+
+    public function addCat(Cat $cat): self
+    {
+        if (!$this->cats->contains($cat)) {
+            $this->cats[] = $cat;
+            $cat->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCat(Cat $cat): self
+    {
+        if ($this->cats->removeElement($cat)) {
+            // set the owning side to null (unless already changed)
+            if ($cat->getOwner() === $this) {
+                $cat->setOwner(null);
+            }
+        }
 
         return $this;
     }

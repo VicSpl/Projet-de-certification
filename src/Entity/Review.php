@@ -32,6 +32,11 @@ class Review
      */
     private $validated;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Cat::class, mappedBy="review", cascade={"persist", "remove"})
+     */
+    private $cat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,28 @@ class Review
     public function setValidated(bool $validated): self
     {
         $this->validated = $validated;
+
+        return $this;
+    }
+
+    public function getCat(): ?Cat
+    {
+        return $this->cat;
+    }
+
+    public function setCat(?Cat $cat): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($cat === null && $this->cat !== null) {
+            $this->cat->setReview(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($cat !== null && $cat->getReview() !== $this) {
+            $cat->setReview($this);
+        }
+
+        $this->cat = $cat;
 
         return $this;
     }

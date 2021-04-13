@@ -62,6 +62,17 @@ class Cat
      */
     private $size;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Review::class, inversedBy="cat", cascade={"persist", "remove"})
+     */
+    private $review;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $owner;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +182,30 @@ class Cat
     public function setSize(string $size): self
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    public function getReview(): ?Review
+    {
+        return $this->review;
+    }
+
+    public function setReview(?Review $review): self
+    {
+        $this->review = $review;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
