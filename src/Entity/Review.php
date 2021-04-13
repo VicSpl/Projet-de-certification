@@ -37,6 +37,12 @@ class Review
      */
     private $cat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $validator;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +102,18 @@ class Review
         }
 
         $this->cat = $cat;
+
+        return $this;
+    }
+
+    public function getValidator(): ?User
+    {
+        return $this->validator;
+    }
+
+    public function setValidator(?User $validator): self
+    {
+        $this->validator = $validator;
 
         return $this;
     }

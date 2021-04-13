@@ -78,9 +78,15 @@ class User implements UserInterface
      */
     private $cats;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="validator")
+     */
+    private $reviews;
+
     public function __construct()
     {
         $this->cats = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -272,6 +278,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($cat->getOwner() === $this) {
                 $cat->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setValidator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getValidator() === $this) {
+                $review->setValidator(null);
             }
         }
 
