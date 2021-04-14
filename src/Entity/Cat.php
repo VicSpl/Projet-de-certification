@@ -210,5 +210,8 @@ class Cat
         return $this;
     }
 
-  
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
