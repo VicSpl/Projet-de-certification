@@ -59,6 +59,6 @@ class ProfileController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('profile_show');
+        return $this->redirectToRoute('app_login');
     }
 }
