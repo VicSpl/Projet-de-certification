@@ -125,7 +125,7 @@ class Review
         if ($this->getValidated()) {
             $validation = "est validé";
         }
-        return "Le profile du chat ".$this->getCat()->getName().$validation;
+        return "Le profile du chat ".$this->getCat()->getName()." ".$validation;
     }
 
 }

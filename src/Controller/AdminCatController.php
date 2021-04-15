@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cat;
 use App\Form\CatType;
 use App\Repository\CatRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,19 @@ class AdminCatController extends AbstractController
     /**
      * @Route("/new", name="admin_cat_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $cat = new Cat();
         $form = $this->createForm(CatType::class, $cat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $imageFilename = $fileUploader->upload($imageFile);
+                $cat->setImageFilename($imageFilename);
+            }
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cat);
             $entityManager->flush();
@@ -61,12 +68,17 @@ class AdminCatController extends AbstractController
     /**
      * @Route("/{id}/edit", name="admin_cat_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Cat $cat): Response
+    public function edit(Request $request, Cat $cat, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(CatType::class, $cat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $imageFilename = $fileUploader->upload($imageFile);
+                $cat->setImageFilename( $imageFilename);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_cat_index');
