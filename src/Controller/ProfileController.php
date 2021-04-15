@@ -38,7 +38,7 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('profile_index');
+            return $this->redirectToRoute('profile_show');
         }
 
         return $this->render('profile/edit.html.twig', [
@@ -59,6 +59,6 @@ class ProfileController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('profile_index');
+        return $this->redirectToRoute('profile_show');
     }
 }
