@@ -1,51 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cat index{% endblock %}
+{% block title %}Cat index
+{% endblock %}
 
 {% block body %}
-    <h1>Cat index</h1>
+	<h1>Cat index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Dob</th>
-                <th>City</th>
-                <th>Gender</th>
-                <th>Description</th>
-                <th>Coat</th>
-                <th>EyeColor</th>
-                <th>Weight</th>
-                <th>Size</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cat in cats %}
-            <tr>
-                <td>{{ cat.id }}</td>
-                <td>{{ cat.name }}</td>
-                <td>{{ cat.dob ? cat.dob|date('Y-m-d') : '' }}</td>
-                <td>{{ cat.city }}</td>
-                <td>{{ cat.gender }}</td>
-                <td>{{ cat.description }}</td>
-                <td>{{ cat.coat }}</td>
-                <td>{{ cat.eyeColor }}</td>
-                <td>{{ cat.weight }}</td>
-                <td>{{ cat.size }}</td>
-                <td>
-                    <a href="{{ path('admin_cat_show', {'id': cat.id}) }}">show</a>
-                    <a href="{{ path('admin_cat_edit', {'id': cat.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
 
-    <a href="{{ path('admin_cat_new') }}">Create new</a>
+				<th>Image</th>
+				<th>Name</th>
+				<th>Dob</th>
+				<th>City</th>
+				<th>Breed</th>
+				<th>Gender</th>
+				<th>Coat</th>
+				<th>EyeColor</th>
+				<th>Weight</th>
+				<th>Size</th>
+				<th>Description</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cat in cats %}
+				<tr>
+					<td>{{ cat.id }}</td>
+					<td><img src="{{ asset('./uploads/images/') }}{{cat.imageFilename}}" alt=""/></td>
+					<td>{{ cat.name }}</td>
+					<td>{{ cat.dob ? cat.dob|date('Y-m-d') : '' }}</td>
+					<td>{{ cat.city }}</td>
+					<td>{{ cat.breed }}</td>
+					<td>{{ cat.gender }}</td>
+					<td>{{ cat.coat }}</td>
+					<td>{{ cat.eyeColor }}</td>
+					<td>{{ cat.weight }}</td>
+					<td>{{ cat.size }}</td>
+					<td>{{ cat.description }}</td>
+					<td>
+						<a href="{{ path('admin_cat_show', {'id': cat.id}) }}">show</a>
+						<a href="{{ path('admin_cat_edit', {'id': cat.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="11">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_cat_new') }}">Create new</a>
 {% endblock %}

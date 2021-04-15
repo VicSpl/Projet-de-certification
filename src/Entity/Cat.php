@@ -78,6 +78,11 @@ class Cat
      */
     private $imageFilename;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $breed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -228,6 +233,18 @@ class Cat
     public function setImageFilename(string $imageFilename): self
     {
         $this->imageFilename = $imageFilename;
+
+        return $this;
+    }
+
+    public function getBreed(): ?string
+    {
+        return $this->breed;
+    }
+
+    public function setBreed(string $breed): self
+    {
+        $this->breed = $breed;
 
         return $this;
     }

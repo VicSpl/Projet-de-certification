@@ -13,20 +13,21 @@ class CatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('image', FileType::class, [
+                'mapped' => false
+            ])
             ->add('name')
             ->add('dob')
             ->add('city')
+            ->add('breed')
             ->add('gender')
-            ->add('description')
             ->add('coat')
             ->add('eyeColor')
             ->add('weight')
             ->add('size')
+            ->add('description')
             ->add('review')
-            ->add('owner')
-            ->add('image', FileType::class, [
-                'mapped' => false
-            ]);
+            ->add('owner');
     }
 
     public function configureOptions(OptionsResolver $resolver)
