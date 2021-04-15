@@ -117,4 +117,15 @@ class Review
 
         return $this;
     }
+
+    
+    public function __toString()
+    {
+        $validation = "n'est pas encore validé";
+        if ($this->getValidated()) {
+            $validation = "est validé";
+        }
+        return "Le profile du chat ".$this->getCat()->getName().$validation;
+    }
+
 }
