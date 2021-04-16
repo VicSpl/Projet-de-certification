@@ -12,17 +12,17 @@ class Cat1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('imageFilename')
             ->add('name')
             ->add('dob')
             ->add('city')
-            ->add('gender')
-            ->add('description')
+            ->add('breed')
+            ->add('gender')          
             ->add('coat')
             ->add('eyeColor')
             ->add('weight')
             ->add('size')
-            ->add('imageFilename')
-            ->add('breed')
+             ->add('description')           
             ->add('review')
             ->add('owner')
         ;
