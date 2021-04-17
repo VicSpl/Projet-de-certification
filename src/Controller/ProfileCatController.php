@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cat;
 use App\Form\Cat1Type;
 use App\Repository\CatRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,18 @@ class ProfileCatController extends AbstractController
     /**
      * @Route("/new", name="profile_cat_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $cat = new Cat();
         $form = $this->createForm(Cat1Type::class, $cat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $imageFilename = $fileUploader->upload($imageFile);
+                $cat->setImageFilename($imageFilename);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cat);
             $entityManager->flush();
@@ -67,6 +73,11 @@ class ProfileCatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $imageFilename = $fileUploader->upload($imageFile);
+                $cat->setImageFilename($imageFilename);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('profile_cat_index');

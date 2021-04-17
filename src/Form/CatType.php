@@ -26,7 +26,7 @@ class CatType extends AbstractType
             ->add('weight')
             ->add('size')
             ->add('description')
-            ->add('review')
+            // ->add('review')
             ->add('owner');
     }
 

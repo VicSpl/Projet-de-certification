@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Cat;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,7 +13,9 @@ class Cat1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imageFilename')
+            ->add('image', FileType::class, [
+                'mapped' => false
+            ])
             ->add('name')
             ->add('dob')
             ->add('city')
@@ -23,7 +26,7 @@ class Cat1Type extends AbstractType
             ->add('weight')
             ->add('size')
              ->add('description')           
-            ->add('review')
+            // ->add('review')
             ->add('owner')
         ;
     }
