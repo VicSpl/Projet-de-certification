@@ -5,7 +5,8 @@
 }
 
 :root {
-  --background-color: #020202;
+  --background-color: #0c3730;
+  /* --background-color: #042518; */
   --primary-color: rgb(255, 189, 89);
 }
 
@@ -13,8 +14,17 @@ html,
 body {
   width: 100%;
   min-height: 100vh;
-  background-color: #111;
+  background-color: #0c3730;
+  /* background-color: #39554d; */
+  /* background-color: #222222; */
 }
+
+.carousel-shadow {
+  /* background-color: #222; */
+  background-color: #0c3730;
+  box-shadow: 0 4px 5px #39554d inset;
+}
+
 #carouselExampleIndicators,
 #carouselExampleIndicators img {
   max-width: 450px;
