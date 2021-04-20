@@ -21,7 +21,7 @@ class UserType extends AbstractType
             ->add('zipCode')
             ->add('city')
             ->add('phone')
-            ->add('active')
+            // ->add('active')
         ;
     }
 

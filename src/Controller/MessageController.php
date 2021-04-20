@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\User;
 use App\Form\Message1Type;
 use App\Repository\MessageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,15 +44,17 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="message_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="message_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, User $user): Response
     {
         $message = new Message();
         $form = $this->createForm(Message1Type::class, $message);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $message->setSender($this->getUser());
+            $message->setRecipient($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($message);
             $entityManager->flush();
