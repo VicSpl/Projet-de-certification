@@ -16,17 +16,29 @@ use Symfony\Component\Routing\Annotation\Route;
 class MessageController extends AbstractController
 {
     /**
-     * @Route("/", name="message_index", methods={"GET"})
+     * @Route("/recieved", name="recieve_index", methods={"GET"})
      */
     public function index(MessageRepository $messageRepository): Response
-    {
-        $user = $this->getUser();
+    {      
         return $this->render('message/index.html.twig', [
-            'sentMessages' => $messageRepository->findBy([ 
-            'recieveMessages' => $messageRepository->findBy([ 
-                "sender"=>$user 
-            ])
-            ])
+            
+            'recieved_messages' => $messageRepository->findBy([ 
+                'recipient' => $this->getUser()
+                // "receive"=>$user 
+            ]),
+        ]);
+    }
+
+    /**
+     * @Route("/sent", name="sent_index", methods={"GET"})
+     */
+    public function index_sent(MessageRepository $messageRepository): Response
+    {
+        return $this->render('message/index.html.twig', [
+            'sent_messages' => $messageRepository->findBy([ 
+                'sender' => $this->getUser()
+                // "sender"=>$user 
+            ]),
         ]);
     }
 

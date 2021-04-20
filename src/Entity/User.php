@@ -69,11 +69,6 @@ class User implements UserInterface
     private $phone;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $active;
-
-    /**
      * @ORM\OneToMany(targetEntity=Cat::class, mappedBy="owner", orphanRemoval=true)
      */
     private $cats;
@@ -256,18 +251,6 @@ class User implements UserInterface
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
 
         return $this;
     }
