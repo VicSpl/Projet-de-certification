@@ -20,10 +20,10 @@ class MessageController extends AbstractController
      * @Route("/recieved", name="recieve_index", methods={"GET"})
      */
     public function index(MessageRepository $messageRepository): Response
-    {      
+    {
         return $this->render('message/index.html.twig', [
-            
-            'recieved_messages' => $messageRepository->findBy([ 
+
+            'recieved_messages' => $messageRepository->findBy([
                 'recipient' => $this->getUser()
                 // "receive"=>$user 
             ]),
@@ -36,7 +36,7 @@ class MessageController extends AbstractController
     public function index_sent(MessageRepository $messageRepository): Response
     {
         return $this->render('message/index.html.twig', [
-            'sent_messages' => $messageRepository->findBy([ 
+            'sent_messages' => $messageRepository->findBy([
                 'sender' => $this->getUser()
                 // "sender"=>$user 
             ]),
@@ -59,7 +59,7 @@ class MessageController extends AbstractController
             $entityManager->persist($message);
             $entityManager->flush();
 
-            return $this->redirectToRoute('message_index');
+            return $this->redirectToRoute('sent_index');
         }
 
         return $this->render('message/new.html.twig', [
@@ -90,6 +90,6 @@ class MessageController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('message_index');
+        return $this->redirectToRoute('sent_index');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Message;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +14,9 @@ class Message1Type extends AbstractType
     {
         $builder
             ->add('subject')
-            ->add('content')
-            ->add('sender')
-            ->add('recipient')
+            ->add('content', TextareaType::class)
+            // ->add('sender')
+            // ->add('recipient')
         ;
     }
 

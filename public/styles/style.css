@@ -1,3 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: #020202;
+  --primary-color: rgb(255, 189, 89);
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #111;
+}
+#carouselExampleIndicators,
+#carouselExampleIndicators img {
+  max-width: 450px;
+}
+
+#carouselExampleIndicators {
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.banner-container {
+  /* background-image: url(/./Photos_site/odin.jpg);
+  background-size: cover;
+  background-position-y: bottom;
+  height: 300px; */
+  height: 240px;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--background-color);
+}
+.logo {
+  height: auto;
+  width: 200px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+.nav-tabs {
+  background-color: #ffffff;
+}
+
+.navbar-color {
+  background-color: var(--primary-color);
+}
+
+.card_presentation {
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em;
+}
+
+.card-text-home {
+  text-align: justify;
+  color: #ffffff;
+}
+
+.card-header {
+  background-color: transparent;
+  color: white;
+  border-bottom: 4px solid var(--primary-color);
+}
+
+.form-site {
+  display: flex;
+  flex-direction: column;
+  padding: 5em;
+  color: var(--primary-color);
+}
+
+#contact {
+  width: 35em;
+  color: var(--primary-color);
+}
+
+.card {
+  margin: 2em;
+}
+
+.btn-color {
+  background-color: var(--primary-color);
+}
+
+.btn-color:hover {
+  opacity: 0.9;
+}
+
+.form-site *:focus {
+  border-color: #ffc961;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(255 201 97 / 25%);
+}
+
+.nav-link {
+  color: #303030;
+}
+
+.nav-link:hover {
+  color: #303030;
+}
+
+.form-site > * {
+  margin: 0.2em 0em;
+}
+
+.about {
+  color: black;
+}
+#pills-connection {
+  color: var(--primary-color);
+  width: 35em;
+}
+
+#pills-registration {
+  color: var(--primary-color);
+  width: 35em;
+}
+
+#connection *:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(255 201 97 / 25%);
+}
+
+#registration *:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(255 201 97 / 25%);
+}
+#my-profile {
+  color: var(--primary-color);
+  width: 35em;
+}
+ul.no-puce {
+  list-style: none;
+  padding-left: unset;
+}
+.profile-form fieldset {
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  padding: 1em;
+}
+form.profile-form .btn-grp .icon-btn {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2px;
+}
+form.profile-form .btn-grp .icon-btn span.material-icons {
+  font-size: 20px;
+}
+
+form.profile-form {
+  position: relative;
+}
+
+form.profile-form .btn-grp {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+}
+
+.sub-menu a:link {
+  color: #ffffff;
+  background-color: #303030;
+}
+.sub-menu {
+  display: flex;
+  justify-content: center;
+}
+.picture-site {
+  max-width: 130px;
+}
+
 .catPictureMiniature {
   max-width: 8em;
 }
