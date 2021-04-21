@@ -5,53 +5,50 @@
 
 {% block body %}
 	<h1>Cat index</h1>
+	<div class="cats-container">
+		{% for cat in cats %}
+			<div class="card" style="width: 18rem;">
+				<img src="{{ asset('./uploads/images/') }}{{cat.imageFilename}}" alt="cat"/>
+				<div class="card-body">
+					<p class="card-text">
+						<ul>
+							<td></td>
+							<li>Nom :
+								{{ cat.name }}</li>
+							<li>Date de naissance :
+								{{ cat.dob ? cat.dob|date('Y-m-d') : '' }}</li>
+							<li>Ville :
+								{{ cat.city }}</li>
+							<li>Race :
+								{{ cat.breed }}</li>
+							<li>Genre :
+								{{ cat.gender }}</li>
+							<li>Robe
+								{{ cat.coat}}</li>
+							<li>Yeux :
+								{{cat.eyeColor}}</li>
+							<li>Poids :
+								{{ cat.weight }}</li>
+							<li>Taille :
+								{{ cat.size }}</li>
+							<li>Description :
+								{{ cat.description }}</li>
+						</ul>
+						<ul class="no-puce">
+							<li>Coordonnées du propriétaire :</li>
+							<li>Nom : Grind</li>
+							<li>Prénom : Pascale</li>
+							<li>Adresse : 4 rue du chemin</li>
+							<li>77160 Provin</li>
+							<li>Numéro : 0654xxxxxx</li>
+							<li>Email : p.grind@pêche.fr</li>
+						</ul>
+					</p>
+				</div>
+			</div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-
-				<th>Image</th>
-				<th>Name</th>
-				<th>Dob</th>
-				<th>City</th>
-				<th>Breed</th>
-				<th>Gender</th>
-				<th>Coat</th>
-				<th>EyeColor</th>
-				<th>Weight</th>
-				<th>Size</th>
-				<th>Description</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for cat in cats %}
-				<tr>
-					<td>{{ cat.id }}</td>
-					<td><img class="catPictureMiniature" src="{{ asset('./uploads/images/') }}{{cat.imageFilename}}" alt=""/></td>
-					<td>{{ cat.name }}</td>
-					<td>{{ cat.dob ? cat.dob|date('Y-m-d') : '' }}</td>
-					<td>{{ cat.city }}</td>
-					<td>{{ cat.breed }}</td>
-					<td>{{ cat.gender }}</td>
-					<td>{{ cat.coat }}</td>
-					<td>{{ cat.eyeColor }}</td>
-					<td>{{ cat.weight }}</td>
-					<td>{{ cat.size }}</td>
-					<td>{{ cat.description }}</td>
-					<td>
-						<a href="{{ path('admin_cat_show', {'id': cat.id}) }}">show</a>
-						<a href="{{ path('admin_cat_edit', {'id': cat.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="11">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+		{% endfor %}
+	</div>
 
 	<a href="{{ path('admin_cat_new') }}">Create new</a>
 {% endblock %}

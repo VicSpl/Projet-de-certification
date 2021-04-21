@@ -25,6 +25,16 @@ body {
   box-shadow: 0 4px 5px #39554d inset;
 }
 
+.cats-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: normal;
+  flex-wrap: wrap;
+}
+.list-cat li {
+  list-style: none;
+}
+
 .table {
   color: #ffbd59;
   /* background-color: #034238; */

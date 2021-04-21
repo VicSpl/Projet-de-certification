@@ -5,6 +5,56 @@
 {% block body %}
     <h1>Cat</h1>
 
+{% block title %}Cat index
+{% endblock %}
+
+{% block body %}
+
+	<h1>Profil de chat</h1>
+	<div class="cats-container">
+		{% for cat in cats %}
+			<div class="card" style="width: 18rem;">
+				<img src="{{ asset('./uploads/images/') }}{{cat.imageFilename}}" alt="cat"/>
+				<div class="card-body">
+					<p class="card-text">
+						<ul>
+							<td></td>
+							<li>Nom :
+								{{ cat.name }}</li>
+							<li>Date de naissance :
+								{{ cat.dob ? cat.dob|date('Y-m-d') : '' }}</li>
+							<li>Ville :
+								{{ cat.city }}</li>
+							<li>Race :
+								{{ cat.breed }}</li>
+							<li>Genre :
+								{{ cat.gender }}</li>
+							<li>Robe
+								{{ cat.coat}}</li>
+							<li>Yeux :
+								{{cat.eyeColor}}</li>
+							<li>Poids :
+								{{ cat.weight }}</li>
+							<li>Taille :
+								{{ cat.size }}</li>
+							<li>Description :
+								{{ cat.description }}</li>
+						</ul>
+						<ul class="no-puce">
+							<li>Coordonnées du propriétaire :</li>
+							<li>Nom : Grind</li>
+							<li>Prénom : Pascale</li>
+							<li>Adresse : 4 rue du chemin</li>
+							<li>77160 Provin</li>
+							<li>Numéro : 0654xxxxxx</li>
+							<li>Email : p.grind@pêche.fr</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+		{% endfor %}
+	</div>
     <table class="table">
         <tbody>
             <tr>
