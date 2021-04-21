@@ -25,6 +25,15 @@ body {
   box-shadow: 0 4px 5px #39554d inset;
 }
 
+.table {
+  color: #ffbd59;
+  background-color: #034238;
+}
+
+.table td, .table th {
+  border-top: 1px solid #ffbd5959;
+}
+
 #carouselExampleIndicators,
 #carouselExampleIndicators img {
   max-width: 450px;
