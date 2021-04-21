@@ -27,10 +27,15 @@ body {
 
 .table {
   color: #ffbd59;
-  background-color: #034238;
+  /* background-color: #034238; */
+  background-color: #4e4743;
+}
+.table tr:nth-child(odd) {
+  background-color: #463f3b;
 }
 
-.table td, .table th {
+.table td,
+.table th {
   border-top: 1px solid #ffbd5959;
 }
 
