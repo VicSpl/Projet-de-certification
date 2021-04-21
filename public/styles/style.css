@@ -76,11 +76,17 @@ body {
   border-bottom: 4px solid var(--primary-color);
 }
 
+.form-site form {
+  width: 100%;
+  padding: 1em;
+}
 .form-site {
   display: flex;
   flex-direction: column;
-  padding: 5em;
+  align-items: center;
   color: var(--primary-color);
+  max-width: 400px;
+  margin: 5em auto;
 }
 
 #contact {
@@ -92,8 +98,20 @@ body {
   margin: 2em;
 }
 
+.connected-user {
+  color: white;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
 .btn-color {
   background-color: var(--primary-color);
+}
+
+.btn-center {
+  display: block;
+  margin: auto;
 }
 
 .btn-color:hover {
@@ -120,6 +138,7 @@ body {
 
 .about {
   color: black;
+  /* margin-left: 35em; */
 }
 #pills-connection {
   color: var(--primary-color);

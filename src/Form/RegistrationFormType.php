@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -17,15 +19,18 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('address')
-            ->add('zipCode')
-            ->add('city')
-            ->add('phone')
+            ->add('email', EmailType::class, array('attr' => array('class' => 'form-control')))
+            ->add('firstname', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('lastname', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('address', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('zipCode', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('city', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('phone', TextType::class, array('attr' => array('class' => 'form-control')))
             // ->add('active')
             ->add('agreeTerms', CheckboxType::class, [
+                // 'attr' => array('class' => 'form-check-input'),
+                // 'label_attr' => array('class' => 'form-check-label'),
+                // 'row_attr' => array('class' => 'form-check'),
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -34,6 +39,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
+                'attr' => array('class' => 'form-control'),
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -48,8 +54,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
