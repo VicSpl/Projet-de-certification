@@ -37,22 +37,25 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path ('profile_cat_index') }}">Profil des chats</a>
 				</li>
-			{% endif %}
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Messagerie
-				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="{{ path ('recieve_index') }}">Boite de réception</a>
-
-					<a class="dropdown-item" href=" {{ path ('sent_index') }}">Boite d'envoi
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path ('see_cat') }}">Mes chats</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Messagerie
 					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="{{ path ('recieve_index') }}">Boite de réception</a>
 
-				</div>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ path ('contact') }}">Contacte</a>
-			</li>
+						<a class="dropdown-item" href=" {{ path ('sent_index') }}">Boite d'envoi
+						</a>
+
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path ('contact') }}">Contacte</a>
+				</li>
+			{% endif %}
 			<li class="nav-item">
 				<a class="nav-link" href="{{ path ('about') }}">A propos</a>
 			</li>
