@@ -36,14 +36,24 @@
 						</ul>
 						<ul class="no-puce">
 							<li>Coordonnées du propriétaire :</li>
-							<li>Nom : Grind</li>
-							<li>Prénom : Pascale</li>
-							<li>Adresse : 4 rue du chemin</li>
-							<li>77160 Provin</li>
-							<li>Numéro : 0654xxxxxx</li>
-							<li>Email : p.grind@pêche.fr</li>
+							<li>Nom :
+								{{ cat.owner.lastname }}</li>
+							<li>Prénom :
+								{{ cat.owner.firstname }}</li>
+							<li>Adresse :
+								{{ cat.owner.address }}</li>
+							<li>{{ cat.owner.zipCode }}
+								{{ cat.owner.city }}</li>
+							<li>Numéro :
+								{{ cat.owner.phone }}</li>
+							<li>Email :
+								<a href="{{path('message_new', {'id' : cat.owner.id})}}">{{ cat.owner.email }}</a>
+
+							</li>
 						</ul>
 					</p>
+					<a href="{{  path ('admin_cat_edit', {'id' : cat.id}) }}"> Editer</a>
+					<a href="{{  path ('admin_cat_delete', {'id' : cat.id}) }}"> Supprimer</a>
 				</div>
 			</div>
 
