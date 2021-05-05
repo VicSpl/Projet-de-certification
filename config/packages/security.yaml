@@ -38,3 +38,4 @@ security:
     - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }
     - { path: ^/message, roles: ROLE_USER }
+    - { path: ^/review, roles: ROLE_VALIDATOR }
