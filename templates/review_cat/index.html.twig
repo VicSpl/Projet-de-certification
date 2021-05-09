@@ -1,20 +1,102 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello ReviewCatController!{% endblock %}
-
+{% block title %}
+	Inspection
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('./styles/pop-up.css')}}">
+{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('./js/pop-up.js')}}"></script>
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Spieler_PC/Documents/Cours Philiance/Projet de Certification/Projet_final/scratch/src/Controller/ReviewCatController.php'|file_link(0) }}">src/Controller/ReviewCatController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Spieler_PC/Documents/Cours Philiance/Projet de Certification/Projet_final/scratch/templates/review_cat/index.html.twig'|file_link(0) }}">templates/review_cat/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div class="cats-container">
+		{% for cat in cats %}
+			<div class="card" style="width: 18rem;">
+				<img src="{{ asset('./uploads/images/') }}{{ cat.imageFilename }}" alt="cat"/>
+				<div class="card-body">
+					<p class="card-text">
+						<ul class="list-cat">
+							<li>
+								Nom :
+								{{ cat.name }}
+							</li>
+							<li>
+								Date de naissance :
+								{{ cat.dob ? cat.dob|date('Y-m-d') : '' }}
+							</li>
+							<li>
+								Ville :
+								{{ cat.city }}
+							</li>
+							<li>
+								Race :
+								{{ cat.breed }}
+							</li>
+							<li>
+								Genre :
+								{{ cat.gender }}
+							</li>
+							<li>
+								Robe
+								{{ cat.coat }}
+							</li>
+							<li>
+								Yeux :
+								{{ cat.eyeColor }}
+							</li>
+							<li>
+								Poids :
+								{{ cat.weight }}
+							</li>
+							<li>
+								Taille :
+								{{ cat.size }}
+							</li>
+							<li>
+								Description :
+								{{ cat.description }}
+							</li>
+						</ul>
+						<ul class="no-puce">
+							<li>
+								Coordonnées du propriétaire :
+							</li>
+							<li>
+								Nom :
+								{{ cat.owner.lastname }}
+							</li>
+							<li>
+								Prénom :
+								{{ cat.owner.firstname }}
+							</li>
+							<li>
+								Adresse :
+								{{ cat.owner.address }}
+							</li>
+							<li>
+								{{ cat.owner.zipCode }}
+								{{ cat.owner.city }}
+							</li>
+							<li>
+								Numéro :
+								{{ cat.owner.phone }}
+							</li>
+							<li>
+								Email :
+								<a href="{{ path('message_new', {'id' : cat.owner.id}) }}">
+									{{ cat.owner.email }}
+								</a>
+							</li>
+						</ul>
+					</p>
+					<button class="btn btn-success" onclick="confirm('êtes-vous sûr de vouloir approuver ce chat ?')">
+						Approuver
+					</button>
+					<button class="btn btn-danger" onclick="refuseBtn({{ cat.id }})">
+						Refuser
+					</button>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
