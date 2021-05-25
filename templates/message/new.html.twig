@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Message
+{% block title %}Nouveau Message
 {% endblock %}
 
 {% block body %}
 	<div class="form-site">
-		<h1>Create new Message</h1>
+		<h1>Nouveau Message</h1>
 
 		{{ include('message/_form.html.twig') }}
 	</div>
-	<a href="{{ path('recieved_index') }}">Voir les messages reçus</a>
+	<a href="{{ path('recieve_index') }}">Voir les messages reçus</a>
 	<a href="{{ path('sent_index') }}">Voir les messages envoyés</a>
 {% endblock %}

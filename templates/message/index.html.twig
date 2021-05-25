@@ -1,60 +1,83 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Message index
+{% block title %}
+	{% if recieved_messages is defined %}
+		Messages Reçues
+	{% endif %}
+	{% if sent_messages  is defined %}
+		Messages Envoyés
+	{% endif %}
 {% endblock %}
 
 {% block body %}
-	<h1>Message index</h1>
+{% if recieved_messages is defined %}
 
+	<h1>Messages Reçues</h1>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Subject</th>
-				<th>Content</th>
-				<th>actions</th>
+				<th>De</th>
+				<th>Objet</th>
+				<th>Message</th>
+				<th>Date</th>
+				<th>Détails</th>
 			</tr>
 		</thead>
 		<tbody>
 
-			{% if recieved_messages is defined %}
-				{% for message in recieved_messages %}
+			{% for message in recieved_messages %}
 
-					<tr>
-						<td>{{ message.id }}</td>
-						<td>{{ message.subject }}</td>
-						<td>{{ message.content }}</td>
-						<td>
-							<a href="{{ path('message_show', {'id': message.id}) }}">show</a>
-							{# <a href="{{ path('message_edit', {'id': message.id}) }}">show</a> #}
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="4">no records found</td>
-					</tr>
-				{% endfor %}
-			{% endif %}
+				<tr>
+					{# <td>{{ message.id }}</td> #}
+					<td>{{ message.sender.firstname }}
+						{{ message.sender.lastname }}</td>
+					<td>{{ message.subject }}</td>
+					<td>{{ message.content |u.truncate(50, '...')  }}</td>
+					<td>{{ message.createdAt |date("d/m/Y H:i:s")}}</td>
+					<td>
+						<a href="{{ path('message_show', {'id': message.id}) }}">voir plus</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">Aucun message reçu</td>
+				</tr>
+			{% endfor %}
 
-
-			{% if sent_messages  is defined %}
-				{% for message in sent_messages %}
-					<tr>
-						<td>{{ message.id }}</td>
-						<td>{{ message.subject }}</td>
-						<td>{{ message.content }}</td>
-						<td>
-							<a href="{{ path('message_show', {'id': message.id}) }}">show</a>
-							{# <a href="{{ path('message_edit', {'id': message.id}) }}">show</a> #}
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="4">no records found</td>
-					</tr>
-				{% endfor %}
-			{% endif %}
 		</tbody>
 	</table>
+{% endif %}
 
-{% endblock %}
+{% if sent_messages  is defined %}
+
+	<h1>Messages Envoyés</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>A</th>
+				<th>Objet</th>
+				<th>Message</th>
+				<th>Date</th>
+				<th>Détails</th>
+			</tr>
+		</thead>
+
+		{% for message in sent_messages %}
+			<tr>
+				{# <td>{{ message.id }}</td> #}
+				<td>{{ message.recipient.firstname }}
+					{{ message.recipient.lastname }}</td>
+				<td>{{ message.subject }}</td>
+				<td>{{ message.content |u.truncate(50, '...') }}</td>
+				<td>{{ message.createdAt |date("d/m/Y H:i:s")}}</td>
+				<td>
+					<a href="{{ path('message_show', {'id': message.id}) }}">voir plus</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="5">Aucun message émis</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>{% endif %}{% endblock %}
