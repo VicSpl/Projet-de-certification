@@ -1,20 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReviewHistoryController!{% endblock %}
+{% block title %}
+	Historique des inspections
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="card-deck">
+		{% for cat in cats %}
+			<div class="card">
+				<img style="width: 18rem;" src="{{ asset('./uploads/images/') }}{{ cat.imageFilename }}" class="card-img-top" alt="cat-picture">
+				<div class="card-body">
+					<h5 class="card-title">{{ cat.name }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Spieler_PC/Documents/Cours Philiance/Projet de Certification/Projet_final/scratch/src/Controller/ReviewHistoryController.php'|file_link(0) }}">src/Controller/ReviewHistoryController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Spieler_PC/Documents/Cours Philiance/Projet de Certification/Projet_final/scratch/templates/review_history/index.html.twig'|file_link(0) }}">templates/review_history/index.html.twig</a></code></li>
-    </ul>
-</div>
+						<a class="ml-2 btn btn-success" href="{{ path('profile_cat_show', {'id': cat.id}) }}">Détail du chat</a>
+
+					</h5>
+
+					<p class="card-text">
+						Commentaire :
+						{% if cat.review.comment %}
+							{{cat.review.comment}}
+						{% else %}
+							Non renseigné
+						{% endif %}
+						{{cat.review.comment}}</p>
+				</div>
+				<div class="card-footer
+											{% if cat.review.validated %}
+												border-success
+						                    {% else %}
+						                        border-danger
+						                    {% endif %}
+						                    ">
+					<small class="text-muted">
+						{% if cat.review.validated %}
+							Aprouvé
+						{% else %}
+							Refusé
+						{% endif %}
+
+						le :
+						{{cat.review.createdAt | date("d/m/Y")}}</small>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
