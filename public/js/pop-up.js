@@ -22,7 +22,7 @@
 /*
 Création de toutes les balises
 */
-function popUp(title, buttonOk, buttonCancel, comment) {
+function popUp(title, buttonOk, buttonCancel) {
     let shadow = document.createElement("div");
     let popUp = document.createElement("div");
     let entitled = document.createElement("h4");
@@ -44,6 +44,7 @@ function popUp(title, buttonOk, buttonCancel, comment) {
     popUp.className = "pop-up p-3";
     entitled.className = "pop-up-title";
     entitled.innerHTML = title;
+    textarea.id = "comment-area";
     textarea.className = "form-control";
     buttonContainer.className = "btn-container mt-3";
     btnDanger.className = "btn btn-danger";
@@ -81,9 +82,17 @@ function refuseBtn(id) {
     popUp("Veuillez saisir le motif du refus :", {
         text: "Refuser",
         fuct: function () {
-            console.log("le button refusé est cliqué");
-            // envoyer requête au serveur
-            
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            // envoi la requète au serveur
+            fetch(`/review/cat/${id}`, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    validated: false,
+                    comment: document.getElementById("comment-area").value
+                })
+            })
         }
     }, {
         text: "Annuler",

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ReviewRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Review
 {
@@ -53,11 +54,12 @@ class Review
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->createdAt = new \DateTime();
     }
 
     public function getComment(): ?string
@@ -118,14 +120,13 @@ class Review
         return $this;
     }
 
-    
+
     public function __toString()
     {
         $validation = "n'est pas encore validé";
         if ($this->getValidated()) {
             $validation = "est validé";
         }
-        return "Le profile du chat ".$this->getCat()->getName()." ".$validation;
+        return "Le profile du chat " . $this->getCat()->getName() . " " . $validation;
     }
-
 }

@@ -22,7 +22,9 @@ class ProfileCatController extends AbstractController
     public function index(CatRepository $catRepository): Response
     {
         return $this->render('profile_cat/index.html.twig', [
-            'cats' => $catRepository->findAll(),
+            'cats' => $catRepository->findBy([
+                'review' => !null
+            ])
         ]);
     }
 
@@ -94,7 +96,7 @@ class ProfileCatController extends AbstractController
      */
     public function delete(Request $request, Cat $cat): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$cat->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $cat->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($cat);
             $entityManager->flush();

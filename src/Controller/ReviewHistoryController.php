@@ -13,11 +13,16 @@ class ReviewHistoryController extends AbstractController
      * @Route("/review/history", name="review_history")
      */
     public function index(CatRepository $catRepository): Response
+
     {
+        $reviews = $this->getUser()->getReviews();
+
+        $cats = [];
+        foreach ($reviews as $review) {
+            $cats[] = $review->getCat();
+        }
         return $this->render('review_history/index.html.twig', [
-            'cats' => $catRepository->findBy([
-                'review' => !null
-            ])
+            'cats' => $cats
         ]);
     }
 }
