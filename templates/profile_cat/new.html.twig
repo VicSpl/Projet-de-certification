@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Cat{% endblock %}
+{% block title %}Ajouter un chat
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Cat</h1>
 
-    {{ include('profile_cat/_form.html.twig') }}
+	<div class="form-site">
+		<h1 class="h3 mb-3 font-weight-normal">Ajouter un chat</h1>
 
-    <a href="{{ path('profile_cat_index') }}">back to list </a>
+		{{ include('profile_cat/_form.html.twig') }}
+		<a href="{{ path('profile_cat_index') }}">Retour
+		</a>
+	</div>
 {% endblock %}

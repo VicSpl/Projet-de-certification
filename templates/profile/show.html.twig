@@ -1,43 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User
+{% block title %}Mon profil
 {% endblock %}
 
 {% block body %}
-	<h1>User</h1>
+	<h1>Mon profil</h1>
 
 	<table class="table table-sm">
 		<tbody>
-			<tr>
+			{# <tr>
 				<th>Id</th>
 				<td>{{ user.id }}</td>
-			</tr>
+			</tr> #}
 			<tr>
 				<th>Email</th>
 				<td>{{ user.email }}</td>
 			</tr>
 			<tr>
-				<th>Firstname</th>
+				<th>Prénom</th>
 				<td>{{ user.firstname }}</td>
 			</tr>
 			<tr>
-				<th>Lastname</th>
+				<th>Nom</th>
 				<td>{{ user.lastname }}</td>
 			</tr>
 			<tr>
-				<th>Address</th>
+				<th>Adresse</th>
 				<td>{{ user.address }}</td>
 			</tr>
 			<tr>
-				<th>ZipCode</th>
+				<th>Code postale</th>
 				<td>{{ user.zipCode }}</td>
 			</tr>
 			<tr>
-				<th>City</th>
+				<th>Villz</th>
 				<td>{{ user.city }}</td>
 			</tr>
 			<tr>
-				<th>Phone</th>
+				<th>Téléphone</th>
 				<td>{{ user.phone }}</td>
 			</tr>
 		</tbody>

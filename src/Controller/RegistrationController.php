@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Document;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,24 +19,40 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, \Swift_Mailer $mailer): Response
+    public function register(Request $request, FileUploader $fileUploader, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, \Swift_Mailer $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $documentFile = $form->get('licenceJudge')->getData();
+            if ($documentFile) {
+                $user->setRoles(["ROLE_VALIDATOR"]);
+                $documentFilename = $fileUploader->upload($documentFile);
+                $document = new Document();
+                $document->setTitle($documentFilename);
+                $document->setUser($user);
+            }
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+            if ($documentFile) {
+
+                $entityManager->persist($document);
+                $entityManager->flush();
+            }
             // do anything else you need here, like send an email
 
             $message = (new \Swift_Message('Bienvenu chez nous !'))

@@ -5,9 +5,11 @@
 }
 
 :root {
-  --background-color: #0c3730;
-  /* --background-color: #042518; */
-  --primary-color: rgb(255, 189, 89);
+  --primary-color: #0c3730;
+
+  --secondary-color: #ffbd59;
+
+  --tertiary-color: #a88a64;
 }
 
 html,
@@ -15,8 +17,15 @@ body {
   width: 100%;
   min-height: 100vh;
   background-color: #0c3730;
+  color: #ffbd59;
   /* background-color: #39554d; */
   /* background-color: #222222; */
+  font-family: "Nunito", sans-serif;
+}
+
+a,
+a:hover {
+  color: #ffc961;
 }
 
 .carousel-shadow {
@@ -38,11 +47,11 @@ body {
 .table {
   color: #ffbd59;
   /* background-color: #034238; */
+  background-color: #6d5445;
+}
+/* .table  tr:nth-child(odd) {
   background-color: #4e4743;
-}
-.table tr:nth-child(odd) {
-  background-color: #463f3b;
-}
+} */
 
 .table td,
 .table th {
@@ -64,23 +73,30 @@ body {
   background-size: cover;
   background-position-y: bottom;
   height: 300px; */
-  height: 240px;
+  height: 280px;
   display: flex;
-  align-items: flex-end;
-  background-color: var(--background-color);
+  align-items: center;
+  background-color: var(--primary-color);
+  flex-direction: column;
 }
 .logo {
   height: auto;
   width: 200px;
   margin-bottom: 20px;
   margin-right: 20px;
+  margin-top: 10px;
+}
+
+.company-slogan {
+  font-family: "Newsreader", serif;
+  font-size: 1.5em;
 }
 .nav-tabs {
   background-color: #ffffff;
 }
 
 .navbar-color {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
 }
 
 .card_presentation {
@@ -93,11 +109,13 @@ body {
   text-align: justify;
   color: #ffffff;
 }
-
+.card-deck {
+  margin: 100px;
+}
 .card-header {
   background-color: transparent;
   color: white;
-  border-bottom: 4px solid var(--primary-color);
+  border-bottom: 4px solid var(--secondary-color);
 }
 
 .form-site form {
@@ -108,18 +126,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--primary-color);
-  max-width: 400px;
+  color: var(--secondary-color);
+  max-width: 600px;
   margin: 5em auto;
 }
 
 #contact {
   width: 35em;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .card {
   margin: 2em;
+  color: black;
+}
+
+.card a,
+.card a:link,
+.card a:hover {
+  color: black;
 }
 
 .connected-user {
@@ -130,7 +155,7 @@ body {
 }
 
 .btn-color {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
 }
 
 .btn-center {
@@ -160,33 +185,44 @@ body {
   margin: 0.2em 0em;
 }
 
+.image-position {
+  margin-right: 5em;
+  /* padding-top: 10em;
+  padding-left: 10em;
+  padding-bottom: 10em; */
+  max-height: 500px;
+  width: auto;
+}
 .about {
   color: black;
+  margin-left: 5em;
+  margin-top: 12em;
+  height: min-content;
   /* margin-left: 35em; */
 }
 #pills-connection {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   width: 35em;
 }
 
 #pills-registration {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   width: 35em;
 }
 
 #connection *:focus {
-  border-color: var(--primary-color);
+  border-color: var(--secondary-color);
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgb(255 201 97 / 25%);
 }
 
 #registration *:focus {
-  border-color: var(--primary-color);
+  border-color: var(--secondary-color);
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgb(255 201 97 / 25%);
 }
 #my-profile {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   width: 35em;
 }
 ul.no-puce {
@@ -194,7 +230,7 @@ ul.no-puce {
   padding-left: unset;
 }
 .profile-form fieldset {
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--secondary-color);
   border-radius: 4px;
   padding: 1em;
 }
@@ -240,4 +276,12 @@ form.profile-form .btn-grp {
 }
 .catPictureDetails {
   max-width: 20em;
+}
+
+.legend {
+  color: white;
+}
+
+.color-title {
+  color: #ffbd59;
 }

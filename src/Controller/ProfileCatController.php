@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cat;
+use App\Entity\Document;
 use App\Form\Cat1Type;
 use App\Repository\CatRepository;
 use App\Service\FileUploader;
@@ -34,16 +35,28 @@ class ProfileCatController extends AbstractController
     public function new(Request $request, FileUploader $fileUploader): Response
     {
         $cat = new Cat();
+        $cat->setOwner($this->getUser());
         $form = $this->createForm(Cat1Type::class, $cat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $documentFile = $form->get('certificat')->getData();
+            if ($documentFile) {
+                $documentFilename = $fileUploader->upload($documentFile);
+                $document = new Document();
+                $document->setTitle($documentFilename);
+                $document->setUser($this->getUser());
+                $entityManager->persist($document);
+                $entityManager->flush();
+            }
+
             $imageFile = $form->get('image')->getData();
             if ($imageFile) {
                 $imageFilename = $fileUploader->upload($imageFile);
                 $cat->setImageFilename($imageFilename);
             }
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cat);
             $entityManager->flush();
 
