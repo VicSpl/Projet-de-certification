@@ -45,9 +45,11 @@ a:hover {
 }
 
 .table {
-  color: #ffbd59;
+  color: #000000;
+  /* color: #ffbd59; */
   /* background-color: #034238; */
-  background-color: #6d5445;
+  background-color: #a88a64;
+  /* background-color: #6d5445; */
 }
 /* .table  tr:nth-child(odd) {
   background-color: #4e4743;
@@ -56,6 +58,13 @@ a:hover {
 .table td,
 .table th {
   border-top: 1px solid #ffbd5959;
+}
+.table-size{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 5em auto;
 }
 
 #carouselExampleIndicators,
@@ -161,6 +170,7 @@ a:hover {
 .btn-center {
   display: block;
   margin: auto;
+  width: fit-content;
 }
 
 .btn-color:hover {
@@ -284,4 +294,30 @@ form.profile-form .btn-grp {
 
 .color-title {
   color: #ffbd59;
+}
+
+.sentence-color {
+  color: #a88a64;
+  font-size: x-large;
+}
+
+.no-cats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.no-cats-img {
+  border-radius: 50%;
+  box-shadow: 0 0 48px var(--tertiary-color);
+  max-width: 25em;
+  margin: 3em;
+}
+
+.btn-brown:hover {
+  opacity: 0.9;
+}
+
+.btn-brown {
+  background-color:#a88a64 ;
 }

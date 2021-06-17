@@ -4,46 +4,53 @@
 {% endblock %}
 
 {% block body %}
+	<div class="table-size">
 	<h1>Mon profil</h1>
 
-	<table class="table table-sm">
-		<tbody>
-			{# <tr>
-				<th>Id</th>
-				<td>{{ user.id }}</td>
-			</tr> #}
-			<tr>
-				<th>Email</th>
-				<td>{{ user.email }}</td>
-			</tr>
-			<tr>
-				<th>Prénom</th>
-				<td>{{ user.firstname }}</td>
-			</tr>
-			<tr>
-				<th>Nom</th>
-				<td>{{ user.lastname }}</td>
-			</tr>
-			<tr>
-				<th>Adresse</th>
-				<td>{{ user.address }}</td>
-			</tr>
-			<tr>
-				<th>Code postale</th>
-				<td>{{ user.zipCode }}</td>
-			</tr>
-			<tr>
-				<th>Villz</th>
-				<td>{{ user.city }}</td>
-			</tr>
-			<tr>
-				<th>Téléphone</th>
-				<td>{{ user.phone }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<table class="table table-sm">
+			<tbody>
+				{# <tr>
+											<th>Id</th>
+											<td>{{ user.id }}</td>
+										</tr> #}
+				<tr>
+					<th>Email</th>
+					<td>{{ user.email }}</td>
+				</tr>
+				<tr>
+					<th>Prénom</th>
+					<td>{{ user.firstname }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ user.lastname }}</td>
+				</tr>
+				<tr>
+					<th>Adresse</th>
+					<td>{{ user.address }}</td>
+				</tr>
+				<tr>
+					<th>Code postale</th>
+					<td>{{ user.zipCode }}</td>
+				</tr>
+				<tr>
+					<th>Villz</th>
+					<td>{{ user.city }}</td>
+				</tr>
+				<tr>
+					<th>Téléphone</th>
+					<td>{{ user.phone }}</td>
+				</tr>
+			</tbody>
+		</table>
 
-	<a href="{{ path('profile_edit') }}">edit</a>
 
-	{{ include('profile/_delete_form.html.twig') }}
+		<a class="btn btn-brown" href="{{ path('profile_edit') }}">edit</a>
+
+		<a class="btn btn-brown" href="{{ path('profile_update_password') }}">Modifier mot de passe</a>
+
+		{{ include('profile/_delete_form.html.twig') }}
+
+	</div>
+
 {% endblock %}

@@ -42,14 +42,10 @@ class ProfileCatController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager = $this->getDoctrine()->getManager();
-            $documentFile = $form->get('certificat')->getData();
+            $documentFile = $form->get('genealogyFile')->getData();
             if ($documentFile) {
                 $documentFilename = $fileUploader->upload($documentFile);
-                $document = new Document();
-                $document->setTitle($documentFilename);
-                $document->setUser($this->getUser());
-                $entityManager->persist($document);
-                $entityManager->flush();
+                $cat->setGenealogyFile($documentFilename);
             }
 
             $imageFile = $form->get('image')->getData();

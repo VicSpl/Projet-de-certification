@@ -46,12 +46,12 @@
 	{% endif %}
 
 	<a href="
-		{% if message.sender == app.user %}
-		{{ path('sent_index') }}
-		{% endif %}
-		{% if message.recipient == app.user %}
-		{{ path('recieve_index') }}
-		{% endif %}
-	">Retour</a>
+								{% if message.sender == app.user %}
+								{{ path('sent_index') }}
+								{% endif %}
+								{% if message.recipient == app.user %}
+								{{ path('recieve_index') }}
+								{% endif %}
+							">Retour</a>
 	{{ include('message/_delete_form.html.twig') }}
 {% endblock %}

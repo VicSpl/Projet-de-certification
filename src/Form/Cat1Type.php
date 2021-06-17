@@ -81,7 +81,7 @@ class Cat1Type extends AbstractType
                     'class' => 'form-control'
                 )
             ))
-            ->add('certificat', FileType::class, [
+            ->add('genealogyFile', FileType::class, [
                 'mapped' => false,
                 'attr' => array('required' => true)
             ]);

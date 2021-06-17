@@ -83,6 +83,11 @@ class Cat
      */
     private $breed;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $genealogyFile;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -245,6 +250,18 @@ class Cat
     public function setBreed(string $breed): self
     {
         $this->breed = $breed;
+
+        return $this;
+    }
+
+    public function getGenealogyFile(): ?string
+    {
+        return $this->genealogyFile;
+    }
+
+    public function setGenealogyFile(string $genealogyFile): self
+    {
+        $this->genealogyFile = $genealogyFile;
 
         return $this;
     }

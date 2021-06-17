@@ -5,6 +5,7 @@
 
 {% block body %}
 	<div class="cats-container">
+
 		{% for cat in app.user.cats %}
 			<div class="card" style="width: 18rem;">
 				<img src="{{ asset('./uploads/images/') }}{{cat.imageFilename}}" alt="cat"/>
@@ -33,15 +34,24 @@
 								{{ cat.description }}</li>
 						</ul>
 					</p>
-					<a href="{{ path ('admin_cat_edit', {'id' : cat.id}) }}">
+					<a href="{{ path ('profile_cat_edit', {'id' : cat.id}) }}">
 						Editer</a>
-					<a href="{{ path ('admin_cat_delete', {'id' : cat.id}) }}">
-						Supprimer</a>
+					{# <a href="{{ path ('profile_cat_delete', {'id' : cat.id}) }}">
+																Supprimer</a> #}
+					{{ include('profile_cat/_delete_form.html.twig') }}
 				</div>
 			</div>
 
+		{% else %}
+			<div class="no-cats">
+				<img class="no-cats-img" src="{{ asset('./Photos_site/anna-ogiienko-DM2Gr9U7lHo-unsplash.jpg') }}" alt="cat"/>
+
+				<p class="sentence-color">Mais où sont vos chats ?</p>
+			</div>
 		{% endfor %}
+
+
 	</div>
-	<a href="{{ path('profile_cat_new') }}">Ajouter un chat</a>
+	<a class="btn btn-brown btn-center" href="{{ path('profile_cat_new') }}">Ajouter un chat</a>
 
 {% endblock %}

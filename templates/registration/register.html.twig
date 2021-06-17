@@ -1,5 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+	<script>
+		document.onload = function () {
+document.getElementById('lcj').style.display = 'none';
+document.getElementById('particulier').addEventListener('click', function () {
+document.getElementById('lcj').style.display = 'none';
+document.getElementById('lcj').required = false;
+});
+document.getElementById('validator').addEventListener('click', function () {
+document.getElementById('lcj').style.display = 'block';
+document.getElementById('lcj').required = true;
+});
+}
+	</script>
+{% endblock %}
+
 {% block title %}Register
 {% endblock %}
 
@@ -11,32 +27,43 @@
 	<div class="form-site">
 		<h1>S'inscrire</h1>
 
+		<label for="particulier">Je suis un particulier</label>
+		<input type="radio" name="userType" value="particulier" id="particulier" checked>
+		<label for="validator">Je suis un représentant</label>
+		<input type="radio" name="userType" value="validator" id="validator">
+
 		{{ form_start(registrationForm) }}
-		{{ form_row(registrationForm.email) }}
-		{{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
+		{{ form_row(registrationForm.email, {
+            label: 'Email*'
+        }) }}
+		{{ form_row(registrationForm.password, {
         }) }}
 		{{ form_row(registrationForm.firstname, {
-            label: 'Prénom'
+            label: 'Prénom*'
         })  }}
 		{{ form_row(registrationForm.lastname, {
-            label: 'Nom'
+            label: 'Nom*'
         })  }}
 		{{ form_row(registrationForm.address, {
-            label: 'Adresse'
+            label: 'Adresse*'
         }) }}
 		{{ form_row(registrationForm.zipCode, {
-            label: 'Code postal'
+            label: 'Code postal*'
         }) }}
 		{{ form_row(registrationForm.city, {
-            label: 'Ville'
+            label: 'Ville*'
         })  }}
 		{{ form_row(registrationForm.phone, {
-            label: 'Téléphone'
+            label: 'Téléphone*'
         })  }}
 
 		{{ form_row(registrationForm.agreeTerms, {
             label: 'Accepter les conditions d\'utilisation'
+        }) }}
+
+	{{ form_row(registrationForm.licenceJudge, {
+            label: 'Licence de Juge*',
+			id :'lcj'
         }) }}
 
 		<button type="submit" class="btn btn-color btn-center">S'inscrire</button>
