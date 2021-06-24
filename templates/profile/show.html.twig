@@ -9,10 +9,6 @@
 
 		<table class="table table-sm">
 			<tbody>
-				{# <tr>
-																							<th>Id</th>
-																							<td>{{ user.id }}</td>
-																						</tr> #}
 				<tr>
 					<th>Email</th>
 					<td>{{ user.email }}</td>
@@ -43,6 +39,30 @@
 				</tr>
 			</tbody>
 		</table>
+
+		{% if is_granted("ROLE_VALIDATOR") %}
+			<h2>Mes Documents</h2>
+
+			<table class="table table-sm">
+				<tbody>
+					<tr>
+						<th>Documents</th>
+					</tr>
+					{% for document in documents %}
+						<tr>
+							<td>
+								<a class="black-link" href="{{ asset('./uploads/images/') }}{{ document.title }}" download>License de juge</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td>Aucun document trouvé</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		{% endif %}
 
 
 		<a class="btn btn-brown mt-1" href="{{ path('profile_edit') }}">Modifier le profil</a>

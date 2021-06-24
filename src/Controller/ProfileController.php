@@ -25,6 +25,7 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         return $this->render('profile/show.html.twig', [
             'user' => $user,
+            'documents' => $user->getDocuments()
         ]);
     }
 

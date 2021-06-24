@@ -1,12 +1,15 @@
 
 // create tags
-function popUp(title, buttonOk, buttonCancel) {
+function popUp(title, buttonOk, buttonCancel, hasTextArea) {
+    let textarea;
     let shadow = document.createElement("div");
     let popUp = document.createElement("div");
     let entitled = document.createElement("h4");
-    let textarea = document.createElement("textarea");
+    if (hasTextArea) {
+        textarea = document.createElement("textarea");
+    }
     let buttonContainer = document.createElement("div");
-    let btnDanger = document.createElement("button");
+    let btnPrimary = document.createElement("button");
     let btnSecondary = document.createElement("button");
 
 
@@ -18,12 +21,15 @@ function popUp(title, buttonOk, buttonCancel) {
     popUp.className = "pop-up p-3";
     entitled.className = "pop-up-title";
     entitled.innerHTML = title;
-    textarea.id = "comment-area";
-    textarea.className = "form-control";
+
+    if (hasTextArea) {
+        textarea.id = "comment-area";
+        textarea.className = "form-control";
+    }
     buttonContainer.className = "btn-container mt-3";
-    btnDanger.className = "btn btn-danger";
-    btnDanger.innerHTML = buttonOk.text;
-    btnDanger.addEventListener("click", function () {
+    btnPrimary.className = buttonOk.className;
+    btnPrimary.innerHTML = buttonOk.text;
+    btnPrimary.addEventListener("click", function () {
         buttonOk.fuct();
         // delete pop-up
         shadow.parentElement.removeChild(shadow);
@@ -38,21 +44,54 @@ function popUp(title, buttonOk, buttonCancel) {
 
     // add all element in page
 
-    buttonContainer.appendChild(btnDanger);
+    buttonContainer.appendChild(btnPrimary);
     buttonContainer.appendChild(btnSecondary);
 
     popUp.appendChild(entitled);
-    popUp.appendChild(textarea);
+
+    if (hasTextArea) {
+        popUp.appendChild(textarea);
+    }
     popUp.appendChild(buttonContainer);
     shadow.appendChild(popUp);
-
-
 }
 
 function refuseBtn(id) {
 
     popUp("Veuillez saisir le motif du refus :", {
         text: "Refuser",
+        className: "btn btn-danger",
+        fuct: function () {
+            const comment = document.getElementById("comment-area").value;
+            if (comment != "") {
+                const headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+                // send request to the server
+                fetch(`/review/cat/${id}`, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({
+                        validated: false,
+                        comment: comment
+                    })
+                })
+            }
+        }
+    }, {
+        text: "Annuler",
+        fuct: function () {
+            console.log("le button annuler est cliqué")
+        }
+    },
+        true);
+}
+
+
+function acceptedBtn(id) {
+
+    popUp("Êtes-vous sûr de vouloir approuver ce chat ?", {
+        text: "Approuver",
+        className: "btn btn-success",
         fuct: function () {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
@@ -61,15 +100,16 @@ function refuseBtn(id) {
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify({
-                    validated: false,
-                    comment: document.getElementById("comment-area").value
+                    validated: true
                 })
             })
+
         }
     }, {
         text: "Annuler",
         fuct: function () {
             console.log("le button annuler est cliqué")
         }
-    })
+    }),
+        true
 }

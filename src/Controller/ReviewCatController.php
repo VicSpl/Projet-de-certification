@@ -33,7 +33,10 @@ class ReviewCatController extends AbstractController
         $review->setCat($cat);
         $review->setValidator($this->getUser());
         $review->setValidated($data['validated']);
-        $review->setComment($data['comment']);
+        if (array_key_exists('comment',$data)) {
+
+            $review->setComment($data['comment']);
+        }
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($review);
         $entityManager->flush();

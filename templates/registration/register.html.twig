@@ -1,19 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-	<script>
-		document.onload = function () {
-document.getElementById('lcj').style.display = 'none';
-document.getElementById('particulier').addEventListener('click', function () {
-document.getElementById('lcj').style.display = 'none';
-document.getElementById('lcj').required = false;
-});
-document.getElementById('validator').addEventListener('click', function () {
-document.getElementById('lcj').style.display = 'block';
-document.getElementById('lcj').required = true;
-});
-}
-	</script>
+	<script src="{{asset('./js/registration.js')}}"></script>
 {% endblock %}
 
 {% block title %}Register
@@ -57,13 +45,13 @@ document.getElementById('lcj').required = true;
             label: 'Téléphone*'
         })  }}
 
-		{{ form_row(registrationForm.agreeTerms, {
-            label: 'Accepter les conditions d\'utilisation'
-        }) }}
 
-	{{ form_row(registrationForm.licenceJudge, {
+		{{ form_row(registrationForm.licenceJudge, {
             label: 'Licence de Juge*',
 			id :'lcj'
+        }) }}
+		{{ form_row(registrationForm.agreeTerms, {
+            label: 'Accepter les conditions d\'utilisation'
         }) }}
 
 		<button type="submit" class="btn btn-color btn-center">S'inscrire</button>

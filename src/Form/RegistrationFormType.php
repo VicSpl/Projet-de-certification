@@ -49,25 +49,25 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => 'Comfirmation mot de passe*'],
             ])
             ->add('licenceJudge', FileType::class, [
-                'mapped' => false
+                'mapped' => false, 'attr' => array('class' => 'form-control-file')
             ]);
-            // ->add('plainPassword', PasswordType::class, [
-            //     'attr' => array('class' => 'form-control'),
-            //     // instead of being set onto the object directly,
-            //     // this is read and encoded in the controller
-            //     'mapped' => false,
-            //     'constraints' => [
-            //         new NotBlank([
-            //             'message' => 'Veuillez définir un mot de passe',
-            //         ]),
-            //         new Length([
-            //             'min' => 6,
-            //             'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} characters',
-            //             // max length allowed by Symfony for security reasons
-            //             'max' => 4096,
-            //         ]),
-            //     ],
-            // ]);
+        // ->add('plainPassword', PasswordType::class, [
+        //     'attr' => array('class' => 'form-control'),
+        //     // instead of being set onto the object directly,
+        //     // this is read and encoded in the controller
+        //     'mapped' => false,
+        //     'constraints' => [
+        //         new NotBlank([
+        //             'message' => 'Veuillez définir un mot de passe',
+        //         ]),
+        //         new Length([
+        //             'min' => 6,
+        //             'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} characters',
+        //             // max length allowed by Symfony for security reasons
+        //             'max' => 4096,
+        //         ]),
+        //     ],
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

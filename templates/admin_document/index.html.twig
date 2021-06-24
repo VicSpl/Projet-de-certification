@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Document index</h1>
+	<h1 class="m-3">Document index</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Title</th>
-				<th>actions</th>
+				<th>Titre</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,17 +20,17 @@
 					<td>{{ document.id }}</td>
 					<td>{{ document.title }}</td>
 					<td>
-						<a href="{{ path('admin_document_show', {'id': document.id}) }}">show</a>
-						<a href="{{ path('admin_document_edit', {'id': document.id}) }}">edit</a>
+						<a href="{{ path('admin_document_show', {'id': document.id}) }}">Voir</a>
+						<a href="{{ path('admin_document_edit', {'id': document.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="3">no records found</td>
+					<td colspan="3">Aucun document trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('admin_document_new') }}">Create new</a>
+	<a class="btn btn-color mt-3" href="{{ path('admin_document_new') }}">Ajouter un document</a>
 {% endblock %}

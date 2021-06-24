@@ -82,7 +82,6 @@ a:hover {
   background-size: cover;
   background-position-y: bottom;
   height: 300px; */
-  height: 280px;
   display: flex;
   align-items: center;
   background-color: var(--primary-color);
@@ -112,6 +111,10 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding: 1.5em;
+ 
+}
+.body-color{
+  background-color:#a88a64;
 }
 
 .card-text-home {
@@ -150,6 +153,13 @@ a:hover {
   color: black;
 }
 
+.card-body {
+  
+}
+
+a.black-link,
+a.black-link:link,
+a.black-link:hover ,
 .card a,
 .card a:link,
 .card a:hover {

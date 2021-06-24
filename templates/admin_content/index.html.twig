@@ -14,6 +14,7 @@
 				<th>Contenu</th>
 				<th>Page</th>
 				<th>Image</th>
+				<th>Lien</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -25,6 +26,7 @@
 					<td>{{ content.articleContent  |u.truncate(50, '...') }}</td>
 					<td>{{ content.page }}</td>
 					<td>{{ content.picture }}</td>
+					<td>{{ content.link }}</td>
 					<td>
 						<a href="{{ path('admin_content_show', {'id': content.id}) }}">Voir</a>
 						<a href="{{ path('admin_content_edit', {'id': content.id}) }}">Modifier</a>
@@ -38,5 +40,5 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-color" href="{{ path('admin_content_new') }}">Ajouter un nouveau contenu</a>
+	<a class="btn btn-brown" href="{{ path('admin_content_new') }}">Ajouter un nouveau contenu</a>
 {% endblock %}

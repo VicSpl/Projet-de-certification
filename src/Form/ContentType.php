@@ -30,6 +30,11 @@ class ContentType extends AbstractType
             ->add('picture',  FileType::class, [
                 'attr' => ['class' => 'form-control-file'],
                 'label' => 'Illustration de l\'article', 'required' => false
+            ])
+            
+            ->add('link',  TextType::class, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Lien externe', 'required' => false
             ]);
     }
 
