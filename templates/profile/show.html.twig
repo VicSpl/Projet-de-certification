@@ -5,14 +5,14 @@
 
 {% block body %}
 	<div class="table-size">
-	<h1>Mon profil</h1>
+		<h1>Mon profil</h1>
 
 		<table class="table table-sm">
 			<tbody>
 				{# <tr>
-											<th>Id</th>
-											<td>{{ user.id }}</td>
-										</tr> #}
+																							<th>Id</th>
+																							<td>{{ user.id }}</td>
+																						</tr> #}
 				<tr>
 					<th>Email</th>
 					<td>{{ user.email }}</td>
@@ -34,7 +34,7 @@
 					<td>{{ user.zipCode }}</td>
 				</tr>
 				<tr>
-					<th>Villz</th>
+					<th>Ville</th>
 					<td>{{ user.city }}</td>
 				</tr>
 				<tr>
@@ -45,9 +45,9 @@
 		</table>
 
 
-		<a class="btn btn-brown" href="{{ path('profile_edit') }}">edit</a>
+		<a class="btn btn-brown mt-1" href="{{ path('profile_edit') }}">Modifier le profil</a>
 
-		<a class="btn btn-brown" href="{{ path('profile_update_password') }}">Modifier mot de passe</a>
+		<a class="btn btn-brown mt-3" href="{{ path('profile_update_password') }}">Modifier mot de passe</a>
 
 		{{ include('profile/_delete_form.html.twig') }}
 

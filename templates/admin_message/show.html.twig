@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Message</h1>
+	<h1 class="mt-3">Message</h1>
 
 	<table class="table">
 		<tbody>
@@ -13,19 +13,19 @@
 				<td>{{ message.id }}</td>
 			</tr>
 			<tr>
-				<th>Subject</th>
+				<th>Objet</th>
 				<td>{{ message.subject }}</td>
 			</tr>
 			<tr>
-				<th>Content</th>
+				<th>Contenu</th>
 				<td>{{ message.content }}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<a href="{{ path('admin_message_index') }}">back to list</a>
+	<a href="{{ path('admin_message_index') }}">Retour</a>
 
-	<a href="{{ path('admin_message_edit', {'id': message.id}) }}">edit</a>
+	<a href="{{ path('admin_message_edit', {'id': message.id}) }}">Modifier</a>
 
 	{{ include('admin_message/_delete_form.html.twig') }}
 {% endblock %}

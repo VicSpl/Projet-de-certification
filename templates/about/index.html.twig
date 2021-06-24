@@ -6,20 +6,20 @@
 {% block body %}
 
 
-<div class="d-flex justify-contente-space-around">
+	<div class="d-flex justify-contente-space-around">
 		<div class="card about" style="width: 45rem;">
-			<div class="card-body">
-				<h5 class="card-title">Ma société</h5>
-				<p class="card-text about-us"> Je suis une auto-entrepreneuse qui a monté sa propre entreprise depuis deux ans maintenant. Je suis spécialisé dans de la mise en relation de particulier à particulier pour l'accouplement de chat de race. 
+			<div class="card-body body-color">
+				<h5 class="card-title">{{ content.articleTitle }}</h5>
+				<p class="card-text about-us">{{ content.articleContent |nl2br }}
+					{# Je suis une auto-entrepreneuse qui a monté sa propre entreprise depuis deux ans maintenant. Je suis spécialisé dans de la mise en relation de particulier à particulier pour l'accouplement de chat de race. #}
 				</p>
 				{# <p>
-				Nous somme une entreprise spécialisé dans de la mise en relation de particulier à particulier pour l'accouplement de chat de race et de particulier à éleveur pour avoir des conseils et éventuellement pour l'achat d'un chat de race</p> #}
+																Nous somme une entreprise spécialisé dans de la mise en relation de particulier à particulier pour l'accouplement de chat de race et de particulier à éleveur pour avoir des conseils et éventuellement pour l'achat d'un chat de race</p> #}
 			</div>
 		</div>
 
-		
-			<img class="image-position" src="{{ asset('./Photos_site/sarah-dorweiler-QeVmJxZOv3k-unsplash.jpg') }}" alt="Photo de l'entreprise"/>
-		
-</div>
-		
+		<img class="image-position" src="{{ asset('./uploads/images/') }}{{content.picture}}" alt="Photo de l'entreprise"/>
+
+	</div>
+
 {% endblock %}

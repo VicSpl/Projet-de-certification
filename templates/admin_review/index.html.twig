@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Review index
+{% block title %}Liste des inspections
 {% endblock %}
 
 {% block body %}
-	<h1>Review index</h1>
+	<h1 class="mt-3">Liste des inspections</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>CreatedAt</th>
-				<th>Comment</th>
-				<th>Validated</th>
+				<th>Inspecté le</th>
+				<th>Commentaire</th>
+				<th>Etat</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -22,19 +22,19 @@
 					<td>{{ review.id }}</td>
 					<td>{{ review.createdAt ? review.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ review.comment }}</td>
-					<td>{{ review.validated ? 'Yes' : 'No' }}</td>
+					<td>{{ review.validated ? 'Approuvé' : 'Refusé' }}</td>
 					<td>
-						<a href="{{ path('admin_review_show', {'id': review.id}) }}">show</a>
-						<a href="{{ path('admin_review_edit', {'id': review.id}) }}">edit</a>
+						<a href="{{ path('admin_review_show', {'id': review.id}) }}">Voir</a>
+						<a href="{{ path('admin_review_edit', {'id': review.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="5">no records found</td>
+					<td colspan="5">Aucune inspection trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('admin_review_new') }}">Create new</a>
+	<a class="btn btn-color mt-3" href="{{ path('admin_review_new') }}">Ajouter une inspection</a>
 {% endblock %}

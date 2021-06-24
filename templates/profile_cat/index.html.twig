@@ -47,15 +47,14 @@
 								{{ cat.owner.city }}</li>
 							<li>Numéro :
 								{{ cat.owner.phone }}</li>
-							<li>Email :
-								<a href="{{path('message_new', {'id' : cat.owner.id})}}">{{ cat.owner.email }}</a>
-
+							<li>
+								<a class="btn btn-color" href="{{path('message_new', {'id' : cat.owner.id})}}">Contacter</a>
 							</li>
 						</ul>
 					</p>
 				</div>
 			</div>
-		
+
 
 		{% endfor %}
 

@@ -8,7 +8,7 @@
 		<h1>Nouveau Message</h1>
 
 		{{ include('message/_form.html.twig') }}
+	<a class="btn btn-color" href="{{ path('recieve_index') }}">Voir les messages reçus</a>
+	<a class="btn btn-color" href="{{ path('sent_index') }}">Voir les messages envoyés</a>
 	</div>
-	<a href="{{ path('recieve_index') }}">Voir les messages reçus</a>
-	<a href="{{ path('sent_index') }}">Voir les messages envoyés</a>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index
+{% block title %}Liste des utilisateurs
 {% endblock %}
 
 {% block body %}
-	<h1>User index</h1>
+	<h1 class="m-3">Liste des utilisateurs</h1>
 
 	<table class="table">
 		<thead>
@@ -12,12 +12,12 @@
 				<th>Id</th>
 				<th>Email</th>
 				<th>Roles</th>
-				<th>Firstname</th>
-				<th>Lastname</th>
-				<th>Address</th>
-				<th>ZipCode</th>
-				<th>City</th>
-				<th>Phone</th>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>Adresse</th>
+				<th>Code Postal</th>
+				<th>Ville</th>
+				<th>Téléphone</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -34,17 +34,17 @@
 					<td>{{ user.city }}</td>
 					<td>{{ user.phone }}</td>
 					<td>
-						<a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
-						<a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+						<a href="{{ path('admin_user_show', {'id': user.id}) }}">Voir</a>
+						<a href="{{ path('admin_user_edit', {'id': user.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="12">no records found</td>
+					<td colspan="12">Aucun utilisateur trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('admin_user_new') }}">Create new</a>
+	<a class="btn btn-color mt-3" href="{{ path('admin_user_new') }}">Ajouter un utilisateur</a>
 {% endblock %}

@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Message{% endblock %}
+{% block title %}Ajouter un Message
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Message</h1>
+	<div class="form-site">
 
-    {{ include('admin_message/_form.html.twig') }}
+		<h1>Ajouter un message</h1>
 
-    <a href="{{ path('admin_message_index') }}">back to list</a>
+		{{ include('admin_message/_form.html.twig') }}
+
+		<a href="{{ path('admin_message_index') }}">Retour</a>
+	</div>
 {% endblock %}

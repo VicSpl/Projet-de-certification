@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Message index</h1>
+	<h1 class="mt-3">Liste des messages</h1>
 
 	<table class="table">
 		<thead>
@@ -26,17 +26,17 @@
 					<td>{{ message.subject }}</td>
 					<td>{{ message.content }}</td>
 					<td>
-						<a href="{{ path('admin_message_show', {'id': message.id}) }}">show</a>
-						<a href="{{ path('admin_message_edit', {'id': message.id}) }}">edit</a>
+						<a href="{{ path('admin_message_show', {'id': message.id}) }}">Voir</a>
+						<a href="{{ path('admin_message_edit', {'id': message.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="4">no records found</td>
+					<td colspan="6">Aucun message trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('admin_message_new') }}">Create new</a>
+	<a href="{{ path('admin_message_new') }}">Ajouter un message</a>
 {% endblock %}

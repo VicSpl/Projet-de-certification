@@ -1,27 +1,5 @@
-/* <div class="pop-up-shadow">
-    <div class="pop-up p-3">
-        <h4 class="pop-up-title">
-            Veuillez saisir le motif du refus :
-                </h4>
-        <textarea name="" id="" cols="65" rows="5" class="form-control" placeholder="Motif"></textarea>
-        <div class="btn-container mt-3">
-            <button class="btn btn-danger">
-                Refuser
-                    </button>
-            <button class="btn btn-secondary ml-3">
-                Annuler
-                    </button>
-        </div>
-    </div> 
-</div>*/
 
-/**
- * buttonOk {text, fuct}
- */
-
-/*
-Création de toutes les balises
-*/
+// create tags
 function popUp(title, buttonOk, buttonCancel) {
     let shadow = document.createElement("div");
     let popUp = document.createElement("div");
@@ -32,13 +10,9 @@ function popUp(title, buttonOk, buttonCancel) {
     let btnSecondary = document.createElement("button");
 
 
-    /*
-     Ajout de shadow dans le body.
-     */
+    // add shadow of pop up in body of page
     shadow = document.body.appendChild(shadow);
-    /*
-    Ajout les class et text de ces balises. Ajouter les écouteurs d'évenement sur les click des boutons.
-    */
+    // add CSS classes and click event listener
 
     shadow.className = "pop-up-shadow";
     popUp.className = "pop-up p-3";
@@ -51,20 +25,18 @@ function popUp(title, buttonOk, buttonCancel) {
     btnDanger.innerHTML = buttonOk.text;
     btnDanger.addEventListener("click", function () {
         buttonOk.fuct();
-        // suppression de la pop-up
+        // delete pop-up
         shadow.parentElement.removeChild(shadow);
     })
     btnSecondary.className = "btn btn-secondary ml-3"; btnSecondary.innerHTML = buttonCancel.text;
 
     btnSecondary.addEventListener("click", function () {
         buttonCancel.fuct();
-        // suppression de la pop-up
+        // delete pop-up
         shadow.parentElement.removeChild(shadow);
     })
 
-    /*
-    Construction de l'arborescence des balises. 
-    */
+    // add all element in page
 
     buttonContainer.appendChild(btnDanger);
     buttonContainer.appendChild(btnSecondary);
@@ -84,7 +56,7 @@ function refuseBtn(id) {
         fuct: function () {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            // envoi la requète au serveur
+            // send request to the server
             fetch(`/review/cat/${id}`, {
                 method: 'POST',
                 headers: headers,

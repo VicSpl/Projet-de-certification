@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="{{ path ('home') }}">Accueil</a>
+
+	{% if not is_granted("ROLE_ADMIN") %}
+		<a class="navbar-brand" href="{{ path ('home') }}">Accueil</a>
+	{% endif %}
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -20,11 +23,13 @@
 						Espace administrateur
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="{{ path ('admin_content_index') }}">Gestion des contenus</a>
+
 						<a class="dropdown-item" href="{{ path ('admin_user_index') }}">Gestion des utilisateurs</a>
 
 						<a class="dropdown-item" href=" {{ path ('admin_cat_index') }}">Gestion des chats
 						</a>
-						<a class="dropdown-item" href="{{ path ('admin_review_index') }}">Gestion des reviews
+						<a class="dropdown-item" href="{{ path ('admin_review_index') }}">Gestion des inspections
 						</a>
 						<a class="dropdown-item" href="{{ path ('admin_document_index') }}">Gestion des documents
 						</a>
@@ -32,8 +37,7 @@
 
 					</div>
 				</li>
-			{% endif %}
-			{% if app.user %}
+			{% elseif app.user %}
 
 				{% if is_granted("ROLE_VALIDATOR") %}
 					<li class="nav-item">
@@ -49,30 +53,34 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('see_cat') }}">Mes chats</a>
 					</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Messagerie
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="{{ path ('recieve_index') }}">Boite de réception</a>
-
-						<a class="dropdown-item" href=" {{ path ('sent_index') }}">Boite d'envoi
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Messagerie
 						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="{{ path ('recieve_index') }}">Boite de réception</a>
 
-					</div>
-				</li>
+							<a class="dropdown-item" href=" {{ path ('sent_index') }}">Boite d'envoi
+							</a>
+
+						</div>
+					</li>
 				{% endif %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path ('contact') }}">Contacte</a>
+					<a class="nav-link" href="{{ path ('contact') }}">Contact</a>
 				</li>
 			{% endif %}
-			<li class="nav-item">
-				<a class="nav-link" href="{{ path ('about') }}">A propos</a>
-			</li>
-			{% if app.user %}
+			{% if not is_granted("ROLE_ADMIN") %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path ('profile_show') }}">Mon profile</a>
+					<a class="nav-link" href="{{ path ('about') }}">A propos</a>
 				</li>
+			{% endif %}
+			{% if app.user %}
+				{% if not is_granted("ROLE_ADMIN") %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path ('profile_show') }}">Mon profil</a>
+					</li>
+				{% endif %}
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path ('app_logout') }}">Déconnexion</a>
 				</li>

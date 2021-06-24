@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des contenus
+{% endblock %}
+
+{% block body %}
+	<h1 class="m-3">Liste des contenus</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Titre</th>
+				<th>Contenu</th>
+				<th>Page</th>
+				<th>Image</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for content in contents %}
+				<tr>
+					<td>{{ content.id }}</td>
+					<td>{{ content.articleTitle }}</td>
+					<td>{{ content.articleContent  |u.truncate(50, '...') }}</td>
+					<td>{{ content.page }}</td>
+					<td>{{ content.picture }}</td>
+					<td>
+						<a href="{{ path('admin_content_show', {'id': content.id}) }}">Voir</a>
+						<a href="{{ path('admin_content_edit', {'id': content.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">Aucun contenu trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a class="btn btn-color" href="{{ path('admin_content_new') }}">Ajouter un nouveau contenu</a>
+{% endblock %}

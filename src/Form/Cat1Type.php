@@ -20,27 +20,39 @@ class Cat1Type extends AbstractType
     {
         $builder
             ->add('image', FileType::class, [
-                'mapped' => false
+                'mapped' => false,
+                'label' => 'Image',
+                'attr' =>  [
+                    'class' => 'form-control-file'
+                ]
             ])
             ->add('name', TextType::class, array(
                 'attr' => array(
                     'class' => 'form-control'
-                )
+                ),
+                'label' => 'Nom'
             ))
             ->add('dob', DateType::class, array(
+                'widget' => 'single_text',
                 'attr' => array(
                     // 'class' => 'form-control'
-                )
+                    'class' => 'form-control input-inline datetimepicker',
+                    'data-provide' => 'datetimepicker',
+                    'html5' => false,
+                ),
+                'label' => 'Date de naissance'
             ))
             ->add('city', TextType::class, array(
                 'attr' => array(
                     'class' => 'form-control'
-                )
+                ),
+                'label' => 'Ville'
             ))
             ->add('breed', TextType::class, array(
                 'attr' => array(
                     'class' => 'form-control'
-                )
+                ),
+                'label' => 'Race'
             ))
             ->add(
                 'gender',
@@ -50,40 +62,47 @@ class Cat1Type extends AbstractType
                         'Mâle' => 'Mâle',
                         'Femelle' => 'Femelle'
                     ], 'attr' => array(
-                        'class' => 'form-select'
-                    )
+                        'class' => 'form-control'
+                    ),
+                    'label' => 'Genre'
                 ]
             )
             ->add('coat', TextType::class, array(
                 'attr' => array(
                     'class' => 'form-control'
-                )
+                ),
+                'label' => 'Robe'
             ))
             ->add('eyeColor', TextType::class, array(
                 'attr' => array(
                     'class' => 'form-control'
-                )
+                ),
+                'label' => 'Couleur des yeux'
             ))
             ->add('weight', NumberType::class, array(
                 'attr' => array(
                     'class' => 'form-control',
                     'step' => 0.1
-                )
+                ),
+                'label' => 'Poids'
             ))
             ->add('size', NumberType::class, array(
                 'attr' => array(
                     'class' => 'form-control',
                     'step' => 0.1
-                )
+                ),
+                'label' => 'Taille'
             ))
             ->add('description', TextareaType::class, array(
                 'attr' => array(
                     'class' => 'form-control'
-                )
+                ),
+                'label' => 'Description'
             ))
             ->add('genealogyFile', FileType::class, [
                 'mapped' => false,
-                'attr' => array('required' => true)
+                'attr' => array('required' => true, 'class' => 'form-control-file'),
+                'label' => 'Fichier de généalogie'
             ]);
         // ->add('review')
         //->add('owner');
