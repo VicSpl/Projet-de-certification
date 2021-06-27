@@ -11,7 +11,7 @@
 {% block body %}
 	<div class="cats-container">
 		{% for cat in cats %}
-			<div class="card" style="width: 18rem;">
+			<div class="card" style="width: 18rem;" id="card-cat-{{cat.id}}">
 				<img src="{{ asset('./uploads/images/') }}{{ cat.imageFilename }}" alt="cat"/>
 				<div class="card-body">
 					<p class="card-text">

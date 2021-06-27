@@ -53,12 +53,12 @@ class Cat
     private $eyeColor;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=3)
+     * @ORM\Column(type="decimal", precision=5, scale=3)
      */
     private $weight;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @ORM\Column(type="decimal", precision=4, scale=1)
      */
     private $size;
 

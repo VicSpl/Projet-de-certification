@@ -143,6 +143,11 @@ a:hover {
   margin: 5em auto;
 }
 
+input::selection {
+  color: #ffffff;
+  background: #ffbd59;
+}
+
 #contact {
   width: 35em;
   color: var(--secondary-color);
@@ -151,10 +156,6 @@ a:hover {
 .card {
   margin: 2em;
   color: black;
-}
-
-.card-body {
-  
 }
 
 a.black-link,
@@ -324,10 +325,17 @@ form.profile-form .btn-grp {
   margin: 3em;
 }
 
+
 .btn-brown:hover {
   opacity: 0.9;
 }
 
 .btn-brown {
   background-color:#a88a64 ;
+}
+
+.btn-brown:focus {
+  border-color: #a88a64;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem #a88a6440;
 }

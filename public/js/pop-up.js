@@ -1,3 +1,6 @@
+function removeCard(id) {
+    document.getElementById("card-cat-" + id).style.display = 'none';
+}
 
 // create tags
 function popUp(title, buttonOk, buttonCancel, hasTextArea) {
@@ -74,7 +77,7 @@ function refuseBtn(id) {
                         validated: false,
                         comment: comment
                     })
-                })
+                }).then(removeCard(id))
             }
         }
     }, {
@@ -102,7 +105,7 @@ function acceptedBtn(id) {
                 body: JSON.stringify({
                     validated: true
                 })
-            })
+            }).then(removeCard(id))
 
         }
     }, {
