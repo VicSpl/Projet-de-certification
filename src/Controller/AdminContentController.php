@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @Route("/admin/content")
@@ -67,8 +68,14 @@ class AdminContentController extends AbstractController
     /**
      * @Route("/{id}/edit", name="admin_content_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Content $content): Response
+    public function edit(Request $request, Content $content, FileUploader $fileUploader): Response
     {
+        //fetch current img is exists
+        $img=$content->getPicture();
+        if($img !== null) {
+            $content->setPicture(new File($fileUploader->getTargetDirectory().$img));
+        }
+
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
 

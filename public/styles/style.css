@@ -1,9 +1,11 @@
+/* retrait de toutes les marges(extérieur/intérieur) par défaut */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* définition des couleurs principales */
 :root {
   --primary-color: #0c3730;
 
@@ -18,18 +20,20 @@ body {
   min-height: 100vh;
   background-color: #0c3730;
   color: #ffbd59;
-  /* background-color: #39554d; */
-  /* background-color: #222222; */
   font-family: "Nunito", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+/* tous les liens sont doré par défaut */
 a,
 a:hover {
   color: #ffc961;
 }
 
+/* le carousel de la page d'accueil a une ombre */
 .carousel-shadow {
-  /* background-color: #222; */
   background-color: #0c3730;
   box-shadow: 0 4px 5px #39554d inset;
 }
@@ -46,20 +50,14 @@ a:hover {
 
 .table {
   color: #000000;
-  /* color: #ffbd59; */
-  /* background-color: #034238; */
   background-color: #a88a64;
-  /* background-color: #6d5445; */
 }
-/* .table  tr:nth-child(odd) {
-  background-color: #4e4743;
-} */
 
 .table td,
 .table th {
   border-top: 1px solid #ffbd5959;
 }
-.table-size {
+.table-size{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,10 +76,6 @@ a:hover {
 }
 
 .banner-container {
-  /* background-image: url(/./Photos_site/odin.jpg);
-  background-size: cover;
-  background-position-y: bottom;
-  height: 300px; */
   display: flex;
   align-items: center;
   background-color: var(--primary-color);
@@ -111,10 +105,12 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding: 1.5em;
+ 
 }
-.body-color {
-  background-color: #a88a64;
+.body-color{
+  background-color:#a88a64;
 }
+
 
 .card-text-home {
   text-align: justify;
@@ -157,9 +153,10 @@ input::selection {
   color: black;
 }
 
+/* Tous les lien  dans les fiches sont noire  */
 a.black-link,
 a.black-link:link,
-a.black-link:hover,
+a.black-link:hover ,
 .card a,
 .card a:link,
 .card a:hover {
@@ -177,6 +174,7 @@ a.black-link:hover,
   background-color: var(--secondary-color);
 }
 
+/* placement d'un bouton au centre */
 .btn-center {
   display: block;
   margin: auto;
@@ -187,6 +185,7 @@ a.black-link:hover,
   opacity: 0.9;
 }
 
+/* Tous les champs qui sont visés ont une bordure jaune */
 .form-site *:focus {
   border-color: #ffc961;
   outline: 0;
@@ -207,9 +206,6 @@ a.black-link:hover,
 
 .image-position {
   margin-right: 5em;
-  /* padding-top: 10em;
-  padding-left: 10em;
-  padding-bottom: 10em; */
   max-height: 500px;
   width: auto;
 }
@@ -218,7 +214,6 @@ a.black-link:hover,
   margin-left: 5em;
   margin-top: 12em;
   height: min-content;
-  /* margin-left: 35em; */
 }
 #pills-connection {
   color: var(--secondary-color);
@@ -311,12 +306,15 @@ form.profile-form .btn-grp {
   font-size: x-large;
 }
 
+/* container l'image quand aucun chat n'existe pour le particulier */
 .no-cats {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+
+/* l'image quand aucun chat n'existe pour le particulier */
 .no-cats-img {
   border-radius: 50%;
   box-shadow: 0 0 48px var(--tertiary-color);
@@ -324,14 +322,17 @@ form.profile-form .btn-grp {
   margin: 3em;
 }
 
+/* bouton brun au survole */
 .btn-brown:hover {
   opacity: 0.9;
 }
 
+/* bouton brun par défaut */
 .btn-brown {
-  background-color: #a88a64;
+  background-color:#a88a64 ;
 }
 
+/* bouton brun en cours de sélection */
 .btn-brown:focus {
   border-color: #a88a64;
   outline: 0;
@@ -341,4 +342,12 @@ form.profile-form .btn-grp {
 .img-article {
   margin: 6px;
   max-height: 6em;
+/* footer for CGU page */
+footer {
+  background-color: #000;
+  padding : 1em;
+}
+
+footer p {
+  color : white;
 }

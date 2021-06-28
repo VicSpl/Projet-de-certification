@@ -5,15 +5,8 @@
 
 {% block body %}
 	<div class="form-site">
-		<form action="" methode="">
-			<label for="">Motif/Question</label>
-			<select name="motive" id="" class="form-control">
-				<option value="ask">Problème avec un particuler</option>
-				<option value="ask">Autre question</option>
-			</select>
-			<label for="message">Message</label>
-			<textarea class="form-control" name="comment" id="message" cols="30" rows="5" placeholder="Ecriver votre message ici"></textarea>
-			<button type="submit" class="form-control btn-color mt-2">Envoyer</button>
-		</form>
+		<h1>Contact</h1>
+
+		{{ include('message/_form.html.twig') }}
 	</div>
 {% endblock %}

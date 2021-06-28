@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
+use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,20 +14,28 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(): Response
+    public function index(Request $request, \Swift_Mailer $mailer): Response
     {
-        // write message in database
-        // ...
+        $message = new Message();
+        $form = $this->createForm(ContactType::class, $message);
+        $form->handleRequest($request);
 
-        // send mail to all admin
-        // $message = (new \Swift_Message('Bienvenu chez nous !'))
-        //     ->setFrom($user->getEmail())
-        //     ->setTo(.....) -----> all email address admin role
-        //     ->setBody(....., 'text/html'); -------> message of textarea
-        // $mailer->send($message);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // on construit l'email
+            $email = (new \Swift_Message($message->getSubject()))
+            ->setFrom($this->getUser()->getEmail())
+            ->setTo('contact@les-aristoscratch.fr')
+            ->setBody($message->getContent(), 'text/html');
+            // on envoi l'email
+            $mailer->send($email);
+
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
+            'message' => $message,
+            'form' => $form->createView(),
         ]);
     }
 }

@@ -12,8 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
-// use Symfony\Component\Validator\Constraints\Length;
-// use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
@@ -28,11 +26,7 @@ class RegistrationFormType extends AbstractType
             ->add('zipCode', TextType::class, array('attr' => array('class' => 'form-control')))
             ->add('city', TextType::class, array('attr' => array('class' => 'form-control')))
             ->add('phone', TextType::class, array('attr' => array('class' => 'form-control')))
-            // ->add('active')
             ->add('agreeTerms', CheckboxType::class, [
-                // 'attr' => array('class' => 'form-check-input'),
-                // 'label_attr' => array('class' => 'form-check-label'),
-                // 'row_attr' => array('class' => 'form-check'),
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -40,6 +34,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            // add password with double input
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
@@ -51,23 +46,6 @@ class RegistrationFormType extends AbstractType
             ->add('licenceJudge', FileType::class, [
                 'mapped' => false, 'attr' => array('class' => 'form-control-file')
             ]);
-        // ->add('plainPassword', PasswordType::class, [
-        //     'attr' => array('class' => 'form-control'),
-        //     // instead of being set onto the object directly,
-        //     // this is read and encoded in the controller
-        //     'mapped' => false,
-        //     'constraints' => [
-        //         new NotBlank([
-        //             'message' => 'Veuillez définir un mot de passe',
-        //         ]),
-        //         new Length([
-        //             'min' => 6,
-        //             'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} characters',
-        //             // max length allowed by Symfony for security reasons
-        //             'max' => 4096,
-        //         ]),
-        //     ],
-        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

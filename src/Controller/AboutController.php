@@ -15,6 +15,7 @@ class AboutController extends AbstractController
     public function index(ContentRepository $contentRepository): Response
     {
         return $this->render('about/index.html.twig', [
+            // retourne la page et son contenu pour écrire la page à propos
             'content' => $contentRepository->findOneBy([
                 'page' => 'A_PROPOS'
             ]),
