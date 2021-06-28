@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Cat{% endblock %}
+{% block title %}Modifier Chat{% endblock %}
 
 {% block body %}
-    <h1>Edit Cat</h1>
+    <div class="form-site">
+        <h1>Modifier Chat</h1>
 
-    {{ include('admin_cat/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('admin_cat/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('admin_cat_index') }}">back to list</a>
+        <a class="btn btn-color m-3" href="{{ path('admin_cat_index') }}">Retour</a>
 
-    {{ include('admin_cat/_delete_form.html.twig') }}
+        {{ include('admin_cat/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

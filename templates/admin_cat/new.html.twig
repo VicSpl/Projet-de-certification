@@ -3,9 +3,11 @@
 {% block title %}New Cat{% endblock %}
 
 {% block body %}
-    <h1>Create new Cat</h1>
+    <div class="form-site">
+        <h1>Ajouter un chat</h1>
 
-    {{ include('admin_cat/_form.html.twig') }}
+        {{ include('admin_cat/_form.html.twig') }}
 
-    <a href="{{ path('admin_cat_index') }}">back to list</a>
+        <a class="btn btn-color m-3" href="{{ path('admin_cat_index') }}">Retour</a>
+    </div>
 {% endblock %}

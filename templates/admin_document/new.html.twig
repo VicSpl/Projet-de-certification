@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Document{% endblock %}
+{% block title %}Ajouter un document{% endblock %}
 
 {% block body %}
-    <h1>Create new Document</h1>
+    <div class="form-site">
+        <h1>Ajouter un document</h1>
 
-    {{ include('admin_document/_form.html.twig') }}
+        {{ include('admin_document/_form.html.twig') }}
 
-    <a href="{{ path('admin_document_index') }}">back to list</a>
+        <a class="btn btn-color m-3" href="{{ path('admin_document_index') }}">Retour</a>
+    </form>
 {% endblock %}
