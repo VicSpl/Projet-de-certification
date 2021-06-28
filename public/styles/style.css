@@ -342,6 +342,7 @@ form.profile-form .btn-grp {
 .img-article {
   margin: 6px;
   max-height: 6em;
+}
 /* footer for CGU page */
 footer {
   background-color: #000;
@@ -350,4 +351,8 @@ footer {
 
 footer p {
   color : white;
+}
+
+.btn {
+  width : fit-content;
 }
