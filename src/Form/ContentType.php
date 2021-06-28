@@ -28,6 +28,7 @@ class ContentType extends AbstractType
                 'label' => 'Page de l\'article*', 'required' => true
             ])
             ->add('picture',  FileType::class, [
+                'data_class' => null,
                 'attr' => ['class' => 'form-control-file'],
                 'label' => 'Illustration de l\'article', 'required' => false
             ])

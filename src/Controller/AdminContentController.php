@@ -68,14 +68,8 @@ class AdminContentController extends AbstractController
     /**
      * @Route("/{id}/edit", name="admin_content_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Content $content, FileUploader $fileUploader): Response
+    public function edit(Request $request, Content $content): Response
     {
-        //fetch current img is exists
-        $img=$content->getPicture();
-        if($img !== null) {
-            $content->setPicture(new File($fileUploader->getTargetDirectory().$img));
-        }
-
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
 
