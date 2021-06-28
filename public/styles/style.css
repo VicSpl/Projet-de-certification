@@ -59,7 +59,7 @@ a:hover {
 .table th {
   border-top: 1px solid #ffbd5959;
 }
-.table-size{
+.table-size {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,10 +111,9 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding: 1.5em;
- 
 }
-.body-color{
-  background-color:#a88a64;
+.body-color {
+  background-color: #a88a64;
 }
 
 .card-text-home {
@@ -160,7 +159,7 @@ input::selection {
 
 a.black-link,
 a.black-link:link,
-a.black-link:hover ,
+a.black-link:hover,
 .card a,
 .card a:link,
 .card a:hover {
@@ -325,17 +324,21 @@ form.profile-form .btn-grp {
   margin: 3em;
 }
 
-
 .btn-brown:hover {
   opacity: 0.9;
 }
 
 .btn-brown {
-  background-color:#a88a64 ;
+  background-color: #a88a64;
 }
 
 .btn-brown:focus {
   border-color: #a88a64;
   outline: 0;
   box-shadow: 0 0 0 0.25rem #a88a6440;
+}
+
+.img-article {
+  margin: 6px;
+  max-height: 6em;
 }

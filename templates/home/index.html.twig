@@ -37,10 +37,19 @@
 		{% for content in contents %}
 
 			<div class="card_presentation">
-				<h5 class="card-header">{{ content.articleTitle }}</h5>
+				<h5 class="card-header">
+					{% if content.picture %}
+						<img class="img-article" src="{{ asset('./uploads/images/') }}{{content.picture}}" alt="{{content.articleTitle}}"/>
+					{% endif %}
+					{{ content.articleTitle }}</h5>
 				<div class="card-body">
-					<p class="card-text-home">{{ content.articleContent |nl2br }}</p>
+					<p class="card-text-home">{{ content.articleContent |nl2br }}
+
+					</p>
 				</div>
+				{% if content.link %}
+					<a href="{{content.link}}">{{content.link}}</a>
+				{% endif %}
 			</div>
 		{% else %}
 			<p>Aucun article trouvé</p>
